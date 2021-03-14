@@ -23,7 +23,7 @@ app.add_middleware(
 def read_root():
     return {'detail': 'Welcome to this app'}
 
-@app.post('/api/Registrar_P/{cedula}/{vacuna}/{provincia}/{fecha_v}')
+@app.get('/api/Registrar_P/{cedula}/{vacuna}/{provincia}/{fecha_v}')
 def Registrar_P(cedula: str, vacuna: str, provincia: str, fecha_v: str):
     conexion=sqlite3.connect('app.db')
     registro=conexion.cursor()
@@ -66,7 +66,7 @@ def Registrar_P(cedula: str, vacuna: str, provincia: str, fecha_v: str):
         except:
             return{"mensaje":"Cedula invalida"}
 
-@app.post('/api/Registrar_v/{marca}/{cantidad}')
+@app.get('/api/Registrar_v/{marca}/{cantidad}')
 def Registrar_v(marca: str, cantidad: int):
     conexion=sqlite3.connect('app.db')
     registro=conexion.cursor()
@@ -129,7 +129,7 @@ def List_Signo():
     for i in datos:
         a.append({"NOMBRE_S":i[0],"CANTIDAD":i[1]})
     return a
-@app.delete('/api/Eliminar_V/{cedula}')
+@app.get('/api/Eliminar_V/{cedula}')
 def Eliminar_V(cedula: str):
     conexion=sqlite3.connect('app.db')
     registro=conexion.cursor()
@@ -165,7 +165,7 @@ def Provinvias():
         a.append({"NOMBRE": i[1]})
     return a
 
-@app.post('/api/Modificar_Pro/{nombre}/{numero}')
+@app.get('/api/Modificar_Pro/{nombre}/{numero}')
 def Modificar_Pro(nombre: str,numero: str):
     conexion=sqlite3.connect('app.db')
     registro=conexion.cursor()
