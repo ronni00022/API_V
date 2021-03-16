@@ -67,7 +67,7 @@ def Registrar_P(cedula: str, vacuna: str, provincia: str, fecha_v: str):
             return{"mensaje":"Cedula invalida"}
 
 @app.get('/api/Registrar_v/{marca}/{cantidad}')
-def Registrar_v(marca: str, cantidad: int):
+def Registrar_v(marca: str, cantidad: str):
     conexion=sqlite3.connect('app.db')
     registro=conexion.cursor()
     info = (marca.upper(),cantidad)
@@ -162,7 +162,7 @@ def Provinvias():
     conexion.commit()
     datos = data.fetchall()
     for i in datos:
-        a.append({"NOMBRE": i[1]})
+        a.append({"ID":[0],"NOMBRE": i[1]})
     return a
 
 @app.get('/api/Modificar_Pro/{nombre}/{numero}')
